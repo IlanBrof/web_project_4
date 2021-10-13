@@ -1,0 +1,9 @@
+.profile-menu__add-button {
+  margin: auto 0 auto auto;
+  width: 150px;
+  height: 50px;
+  background: url(../../../images/plus_button.png);
+  border: none;
+  border-spacing: 0;
+  padding: 0;
+}

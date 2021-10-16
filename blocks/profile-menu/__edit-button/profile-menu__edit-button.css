@@ -1,5 +1,6 @@
 .profile-menu__edit-button {
   background: url(../../../images/edit_button.png);
+  background-repeat: no-repeat;
   width: 24px;
   height: 24px;
   border: none;

@@ -5,3 +5,9 @@
   color: white;
   font-family: "Inter", Arial, sans-serif;
 }
+@media screen and (max-width: 1024px) {
+  .page-container {
+    width: calc(100% - (19px * 2));
+    /* padding: 28px 0 0 0; */
+  }
+}

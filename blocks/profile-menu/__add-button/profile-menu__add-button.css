@@ -2,8 +2,26 @@
   margin: auto 0 auto auto;
   width: 150px;
   height: 50px;
-  background: url(../../../images/plus_button.png);
-  border: none;
-  border-spacing: 0;
-  padding: 0;
+  box-sizing: border-box;
+  background: url(../../../images/plus_button.svg);
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-position: center;
+  padding: 0 0;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  border-radius: 2px;
+}
+
+@media screen and (max-width: 928px) {
+  .profile-menu__add-button {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile-menu__add-button {
+    width: 100%;
+  }
 }

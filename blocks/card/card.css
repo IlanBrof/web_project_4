@@ -1,6 +1,7 @@
 .card {
-  width: 282px;
-  height: 361px;
+  max-width: 282px;
+  /* height: 282px; */
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
 }

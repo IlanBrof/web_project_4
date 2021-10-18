@@ -10,10 +10,11 @@
 </head>
 
 <body class="page-container">
+
   <header class="header">
     <img class="logo" src="/images/logo.svg" alt="logo">
   </header>
-  <main>
+  <main class="main">
     <section class="profile-menu">
       <img class="profile-menu__avatar" src="/images/avatar_image.png" alt="jacques cousteau">
       <div class="profile-menu__info">
@@ -80,10 +81,22 @@
       </ul>
     </section>
   </main>
+
   <footer class="footer">
     © 2021 Around The U.S.
   </footer>
-  <script src="index.js"></script>
+  <div class="popup-menu">
+
+    <form class="popup-menu__edit-form">
+      <button class="popup-menu__close-button"></button>
+      <h3 class="popup-menu__title">Edit Profile</h3>
+      <input type="text" placeholder="Name" class="popup-menu__input popup-menu__input_name">
+      <input type="text" placeholder="Title" class="popup-menu__input popup-menu__input_title">
+      <button class="popup-menu__save-button">Save</button>
+    </form>
+
+  </div>
+  <script src="js/index.js"></script>
 </body>
 
 </html>

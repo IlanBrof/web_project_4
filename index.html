@@ -18,13 +18,13 @@
     <section class="profile-menu">
       <img class="profile-menu__avatar" src="/images/avatar_image.png" alt="jacques cousteau">
       <div class="profile-menu__info">
-        <h1 class="profile-menu__full-name">Jacques Cousteau
-          <button class="profile-menu__edit-button"></button>
-        </h1>
+        <div class="profile-menu__alignment">
+          <h1 class="profile-menu__full-name">Jacques Cousteau</h1>
+          <button class="profile-menu__edit-button" type="button"></button>
+        </div>
         <p class="profile-menu__title">Explorer</p>
       </div>
-
-      <button class="profile-menu__add-button"></button>
+      <button class="profile-menu__add-button" type="button"></button>
     </section>
 
     <section class="cards">
@@ -43,7 +43,7 @@
           <img class="card__image" src="images/lake_louise.png">
           <div class="card__photo-description">
             <h2 class="card__text">Lake Louise</h2>
-            <button class="card__like-button"></button>
+            <button class="card__like-button" type="button"></button>
           </div>
         </li>
         <li class="card">
@@ -86,17 +86,16 @@
     © 2021 Around The U.S.
   </footer>
   <div class="popup-menu">
-
     <form class="popup-menu__edit-form">
       <button class="popup-menu__close-button"></button>
       <h3 class="popup-menu__title">Edit Profile</h3>
       <input type="text" placeholder="Name" class="popup-menu__input popup-menu__input_name">
       <input type="text" placeholder="Title" class="popup-menu__input popup-menu__input_title">
-      <button class="popup-menu__save-button">Save</button>
+      <button class="popup-menu__save-button" type="submit">Save</button>
     </form>
 
   </div>
-  <script src="js/index.js"></script>
+  <script src="script/index.js"></script>
 </body>
 
 </html>

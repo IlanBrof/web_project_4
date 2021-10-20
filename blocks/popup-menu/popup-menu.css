@@ -1,8 +1,7 @@
 .popup-menu {
-  /* visibility: hidden; */
-  /* display: none; */
+  visibility: hidden;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   position: fixed;
   left: 0;
   top: 0;

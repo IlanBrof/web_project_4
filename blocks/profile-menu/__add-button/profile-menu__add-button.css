@@ -1,5 +1,6 @@
 .profile-menu__add-button {
-  margin: auto 0 auto auto;
+  margin: 75px 0 auto auto;
+  padding: 0 0;
   width: 150px;
   height: 50px;
   box-sizing: border-box;
@@ -7,12 +8,15 @@
   background-repeat: no-repeat;
   background-color: transparent;
   background-position: center;
-  padding: 0 0;
   cursor: pointer;
   border: 2px solid #ffffff;
   border-radius: 2px;
 }
-
+.profile-menu__add-button:hover {
+  opacity: 0.5;
+  transition: ease-in-out 450ms;
+  cursor: pointer;
+}
 @media screen and (max-width: 928px) {
   .profile-menu__add-button {
     width: 80%;
@@ -20,7 +24,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 440px) {
   .profile-menu__add-button {
     width: 100%;
   }

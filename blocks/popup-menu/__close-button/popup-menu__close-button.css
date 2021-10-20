@@ -7,10 +7,17 @@
   width: 40px;
   height: 40px;
   position: absolute;
+  background-size: contain;
 }
 
 .popup-menu__close-button:hover {
   opacity: 0.6;
-  transition: ease-in-out 450ms;
   cursor: pointer;
+}
+@media screen and (max-width: 540px) {
+  .popup-menu__close-button {
+    right: 0;
+    width: 26px;
+    height: 26px;
+  }
 }

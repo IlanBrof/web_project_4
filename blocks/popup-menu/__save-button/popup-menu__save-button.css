@@ -10,9 +10,10 @@
   font-size: 18px;
   line-height: 22px;
   text-align: center;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 .popup-menu__save-button:hover {
   background-color: rgba(0, 0, 0, 0.8);
-  transition: ease-in-out 450ms;
   cursor: pointer;
 }

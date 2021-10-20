@@ -1,16 +1,17 @@
-# Project 4: Around The U.S.
+# Project 4: Around the US
 
-### Overview
+**Intro**
 
-* Figma
-* Images
+This is a project about traveling across the US. We've made it so all the elements are displayed correctly on popular screen sizes.
+This is my First Javascript enabled project.
 
-**Figma**
+**Technologies used to create the Project**
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+- HTML - Makes up the markup of index.html
+- CSS - Used to make the website reactive to different Viewport sizes
+- Javascript - Used to make the popup menu, and save the input string with a submit button ('Save')
+- Figma - for the Design layout
 
-**Images**
+# Link to the Website on GitHub Pages
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+https://ilanbrof.github.io/web_project_4/

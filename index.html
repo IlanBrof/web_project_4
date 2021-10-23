@@ -20,11 +20,11 @@
       <div class="profile-menu__info">
         <div class="profile-menu__alignment">
           <h1 class="profile-menu__full-name">Jacques Cousteau</h1>
-          <button class="profile-menu__edit-button" type="button"></button>
+          <button class="profile-menu__edit-button" type="button" aria-label="edit-button"></button>
         </div>
         <p class="profile-menu__title">Explorer</p>
       </div>
-      <button class="profile-menu__add-button" type="button"></button>
+      <button class="profile-menu__add-button" type="button" aria-label="add-button"></button>
     </section>
 
     <section class="cards">
@@ -35,7 +35,7 @@
           <img class="card__image" src="images/yosemite.jpg" alt="Yosemite">
           <div class="card__photo-description">
             <h2 class="card__text">Yosemite Valley</h2>
-            <button class="card__like-button"></button>
+            <button class="card__like-button" type="button" aria-label="like-button"></button>
           </div>
         </li>
         <li class="card">
@@ -43,7 +43,7 @@
           <img class="card__image" src="images/lake_louise.png" alt="Lake louise">
           <div class="card__photo-description">
             <h2 class="card__text">Lake Louise</h2>
-            <button class="card__like-button" type="button"></button>
+            <button class="card__like-button" type="button" aria-label="like-button"></button>
           </div>
         </li>
         <li class="card">
@@ -51,7 +51,7 @@
           <img class="card__image" src="images/bald_mountain.png" alt="Bald Mountain">
           <div class="card__photo-description">
             <h2 class="card__text">Bald Mountains</h2>
-            <button class="card__like-button"></button>
+            <button class="card__like-button" type="button" aria-label="like-button"></button>
           </div>
         </li>
         <li class="card">
@@ -59,7 +59,7 @@
           <img class="card__image" src="images/latemar.png" alt="Latemar">
           <div class="card__photo-description">
             <h2 class="card__text">Latemar</h2>
-            <button class="card__like-button"></button>
+            <button class="card__like-button" type="button" aria-label="like-button"></button>
           </div>
         </li>
         <li class="card">
@@ -67,7 +67,7 @@
           <img class="card__image" src="images/vanoise.png" alt="vanoise">
           <div class="card__photo-description">
             <h2 class="card__text">Vanoise National Park</h2>
-            <button class="card__like-button"></button>
+            <button class="card__like-button" type="button" aria-label="like-button"></button>
           </div>
         </li>
         <li class="card">
@@ -75,7 +75,7 @@
           <img class="card__image" src="images/lago.png" alt="Lago">
           <div class="card__photo-description">
             <h2 class="card__text">Lago di Braies</h2>
-            <button class="card__like-button"></button>
+            <button class="card__like-button" type="button" aria-label="like-button"></button>
           </div>
         </li>
       </ul>
@@ -83,18 +83,18 @@
   </main>
 
   <footer class="footer">
-    © 2021 Around The U.S.
+    <p class="footer__content">© 2021 Around The U.S.</p>
   </footer>
-  <div class="popup-menu">
-    <form class="popup-menu__edit-form">
-      <button class="popup-menu__close-button"></button>
+  <form class="popup-menu" name="form-wrapper">
+    <div class="popup-menu__edit-form">
+      <button class="popup-menu__close-button" type="button" aria-label="close-button"></button>
       <h3 class="popup-menu__title">Edit Profile</h3>
-      <input type="text" placeholder="Name" class="popup-menu__input popup-menu__input_name">
-      <input type="text" placeholder="Title" class="popup-menu__input popup-menu__input_title">
+      <input type="text" placeholder="Name" name="popup-menu__input_name" class="popup-menu__input_name">
+      <input type="text" placeholder="Title" name="popup-menu__input_title" class="popup-menu__input_title">
       <button class="popup-menu__save-button" type="submit">Save</button>
-    </form>
+    </div>
 
-  </div>
+  </form>
   <script src="script/index.js"></script>
 </body>
 

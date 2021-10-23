@@ -3,8 +3,7 @@
   padding: 0 0;
   height: 120px;
   width: 120px;
-  border-color: rgb(90, 254, 35);
-  border-width: 1px;
+  border-width: 0;
   border-style: solid;
   border-radius: 100%;
 }

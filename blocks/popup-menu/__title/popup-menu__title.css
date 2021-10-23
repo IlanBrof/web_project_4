@@ -9,5 +9,9 @@
 @media screen and (max-width: 420px) {
   .popup-menu__title {
     margin: 25px 0 76px 0;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
   }
 }

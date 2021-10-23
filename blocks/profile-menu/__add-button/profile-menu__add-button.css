@@ -13,8 +13,8 @@
   border-radius: 2px;
 }
 .profile-menu__add-button:hover {
-  opacity: 0.5;
-  transition: ease-in-out 450ms;
+  opacity: 0.6;
+  transition: ease 450ms;
   cursor: pointer;
 }
 @media screen and (max-width: 928px) {
@@ -27,5 +27,6 @@
 @media screen and (max-width: 440px) {
   .profile-menu__add-button {
     width: 100%;
+    max-width: 282px;
   }
 }

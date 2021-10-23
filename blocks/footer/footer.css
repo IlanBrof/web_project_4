@@ -1,8 +1,9 @@
 .footer {
-  margin: 70px auto 0 auto;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  color: #545454;
+  margin: 70px auto 36px auto;
   max-width: 880px;
+}
+@media (max-width: 900px) {
+  .footer {
+    margin: 50px auto 36px 19px;
+  }
 }

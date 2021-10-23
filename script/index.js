@@ -21,8 +21,8 @@ profileEditButton.addEventListener('click', popupMenuOpen);
 menuCloseButton.addEventListener('click', popupCloseMenu);
 
 profileMenuEditForm.addEventListener('submit', (event) => {
+  event.preventDefault();
   profileName.textContent = menuInputName.value;
   profileTitleDescription.textContent = menuInputTitle.value;
-  event.preventDefault();
   popupCloseMenu();
 });

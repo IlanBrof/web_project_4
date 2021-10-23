@@ -1,4 +1,4 @@
-.popup-menu__input_name {
+.popup-menu__input {
   max-width: 358px;
   width: 100%;
   border-style: none;
@@ -10,8 +10,12 @@
   line-height: 17px;
 }
 
+.popup-menu__input:nth-last-child(2) {
+  margin-bottom: 46px;
+}
+
 @media screen and (max-width: 420px) {
-  .popup-menu__input_name {
+  .popup-menu__input {
     padding: 2.5px 2.5px 9px 2.5px;
   }
 }

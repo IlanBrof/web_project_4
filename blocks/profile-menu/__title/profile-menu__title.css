@@ -14,12 +14,12 @@
   .profile-menu__title {
     text-align: center;
     margin: 0 0 36px 0;
+    max-width: 282px;
   }
 }
 @media screen and (max-width: 320px) {
   .profile-menu__title {
     font-size: 14px;
     line-height: 17px;
-    max-width: 282px;
   }
 }

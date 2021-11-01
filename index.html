@@ -29,63 +29,15 @@
 
     <section class="cards">
       <!-- grid -->
-      <ul class="cards__list">
-        <li class="card">
-          <!-- f-box -->
-          <img class="card__image" src="images/yosemite.jpg" alt="Yosemite">
-          <div class="card__photo-description">
-            <h2 class="card__text">Yosemite Valley</h2>
-            <button class="card__like-button" type="button" aria-label="like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <!-- f-box -->
-          <img class="card__image" src="images/lake_louise.png" alt="Lake louise">
-          <div class="card__photo-description">
-            <h2 class="card__text">Lake Louise</h2>
-            <button class="card__like-button" type="button" aria-label="like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <!-- f-box -->
-          <img class="card__image" src="images/bald_mountain.png" alt="Bald Mountain">
-          <div class="card__photo-description">
-            <h2 class="card__text">Bald Mountains</h2>
-            <button class="card__like-button" type="button" aria-label="like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <!-- f-box -->
-          <img class="card__image" src="images/latemar.png" alt="Latemar">
-          <div class="card__photo-description">
-            <h2 class="card__text">Latemar</h2>
-            <button class="card__like-button" type="button" aria-label="like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <!-- f-box -->
-          <img class="card__image" src="images/vanoise.png" alt="vanoise">
-          <div class="card__photo-description">
-            <h2 class="card__text">Vanoise National Park</h2>
-            <button class="card__like-button" type="button" aria-label="like-button"></button>
-          </div>
-        </li>
-        <li class="card">
-          <!-- f-box -->
-          <img class="card__image" src="images/lago.png" alt="Lago">
-          <div class="card__photo-description">
-            <h2 class="card__text">Lago di Braies</h2>
-            <button class="card__like-button" type="button" aria-label="like-button"></button>
-          </div>
-        </li>
-      </ul>
+      <ul class="cards__list"></ul>
     </section>
   </main>
 
   <footer class="footer">
     <p class="footer__content">© 2021 Around The U.S.</p>
   </footer>
-  <div class="popup-menu">
+
+  <div class="popup-menu" id="popup-menu_type_edit-profile">
     <div class="popup-menu__edit-form">
       <button class="popup-menu__close-button" type="button" aria-label="close-button"></button>
       <h3 class="popup-menu__title">Edit Profile</h3>
@@ -97,8 +49,43 @@
         <button class="popup-menu__save-button" type="submit">Save</button>
       </form>
     </div>
-
   </div>
+
+  <div class="popup-menu" id="popup-menu_type_add-card">
+    <div class="popup-menu__edit-form">
+      <button class="popup-menu__close-button" type="button" aria-label="close-button"></button>
+      <h3 class="popup-menu__title">New Place</h3>
+      <form class="popup-menu__submit-form" name="form-wrapper">
+        <input type="text" placeholder="Title" name="popup-menu__input_type_title"
+          class="popup-menu__input popup-menu__input_type_title">
+        <input type="text" placeholder="Image link" name="popup-menu__input_type_url"
+          class="popup-menu__input popup-menu__input_type_url">
+        <button class="popup-menu__save-button" type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+  <div class="popup-menu" id="popup-menu_image">
+    <div class="popup-menu__image-container">
+      <div class="popup-menu__image-box">
+        <button class="popup-menu__close-button" id="image_close_button" type="button"
+          aria-label="close-button"></button>
+        <img class="popup-menu__image" src="#" alt="description">
+        <div class="popup-menu__text"></div>
+      </div>
+    </div>
+  </div>
+
+  <template id="card-template">
+    <li class="card">
+      <button class="card__erase" type="button" aria-label="erase-button"></button>
+      <img class="card__image" src="#" alt="">
+      <div class="card__photo-description">
+        <h2 class="card__text"></h2>
+        <button class="card__like-button" type="button" aria-label="like-button"></button>
+      </div>
+    </li>
+  </template>
+
   <script src="script/index.js"></script>
 </body>
 

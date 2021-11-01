@@ -145,7 +145,7 @@ function addNewCard({ name, link, alt }) {
 }
 
 initialCards.forEach((intialCardContent) => {
-  cardsList.prepend(addNewCard(intialCardContent));
+  cardsList.append(addNewCard(intialCardContent));
 });
 
 function popupImageClose() {

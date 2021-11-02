@@ -12,6 +12,5 @@
   color: #000;
   opacity: 0;
   display: flex;
-  transition: visibilty 0s, opacity 0.4s ease-in-out;
-  pointer-events: none;
+  transition: all 0s, opacity 0.4s ease-in-out;
 }

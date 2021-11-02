@@ -100,12 +100,12 @@ popupAddCardCloseButton.addEventListener('click', () =>
 
 popupAddCard.addEventListener('submit', evt => {
   evt.preventDefault();
-  const NewCard = createCard({
+  const newCard = createCard({
     name: popupAddCardTitleInput.value,
     link: popupAddCardUrlInput.value,
     alt: popupAddCardTitleInput.value
   });
-  cardsList.prepend(NewCard);
+  cardsList.prepend(newCard);
   closePopup(popupAddCard)
 })
 
@@ -140,10 +140,6 @@ function createCard({ name, link, alt }) {
 initialCards.forEach((intialCardContent) => {
   cardsList.append(createCard(intialCardContent));
 });
-
-function popupImageClose() {
-  popupImageMenu.classList.remove('popup-menu_opened');
-}
 
 popupImageCloseBtn.addEventListener('click', () =>
   closePopup(popupImageMenu)

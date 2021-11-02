@@ -31,7 +31,6 @@ const initialCards = [
   }
 ];
 
-
 // profile-name and title edit menu
 const popup = document.querySelector('.popup-menu');
 const profileMenuEditForm = popup.querySelector('.popup-menu__edit-form');
@@ -61,58 +60,57 @@ const popupImageBox = popupImageMenu.querySelector('.popup-menu__image-box');
 const popupImage = popupImageMenu.querySelector('.popup-menu__image');
 const popupImageText = popupImageMenu.querySelector('.popup-menu__text');
 
-
-
 // popup open and close
-function popupMenuOpen() {
+function openPopup(popup) {
   popup.classList.add('popup-menu_opened');
-  menuInputName.value = profileName.textContent;
-  menuInputTitle.value = profileTitleDescription.textContent;
 }
-function popupCloseMenu() {
+
+function closePopup(popup) {
   popup.classList.remove('popup-menu_opened');
 }
 
-// add card menu
-function popupAddCardOpen() {
-  popupAddCard.classList.add('popup-menu_opened');
-  popupAddCardTitleInput.value = "";
-  popupAddCardUrlInput.value = "";
-}
-function popupAddCardClose() {
-  popupAddCard.classList.remove('popup-menu_opened');
-}
+// profile-name and title edit menu functionality
+profileEditButton.addEventListener('click', () => {
+  openPopup(popup);
+  menuInputName.value = profileName.textContent;
+  menuInputTitle.value = profileTitleDescription.textContent;
+});
 
-
-popupAddCard.addEventListener('submit', evt => {
-  evt.preventDefault();
-  const createNewCard = addNewCard({
-    name: popupAddCardTitleInput.value,
-    link: popupAddCardUrlInput.value,
-    alt: popupAddCardTitleInput.value
-  });
-  cardsList.prepend(createNewCard);
-  popupAddCardClose()
-
-})
-
-
-profileEditButton.addEventListener('click', popupMenuOpen);
-menuCloseButton.addEventListener('click', popupCloseMenu);
-addCardButton.addEventListener('click', popupAddCardOpen);
-popupAddCardCloseButton.addEventListener('click', popupAddCardClose);
-
+menuCloseButton.addEventListener('click', () =>
+  closePopup(popup)
+);
 
 profileMenuEditForm.addEventListener('submit', (event) => {
   event.preventDefault();
   profileName.textContent = menuInputName.value;
   profileTitleDescription.textContent = menuInputTitle.value;
-  popupCloseMenu();
+  closePopup(popup);
 });
 
+// add-card menu functionality
+addCardButton.addEventListener('click', () => {
+  openPopup(popupAddCard)
+  popupAddCardTitleInput.value = "";
+  popupAddCardUrlInput.value = "";
+});
+
+popupAddCardCloseButton.addEventListener('click', () =>
+  closePopup(popupAddCard)
+);
+
+popupAddCard.addEventListener('submit', evt => {
+  evt.preventDefault();
+  const NewCard = createCard({
+    name: popupAddCardTitleInput.value,
+    link: popupAddCardUrlInput.value,
+    alt: popupAddCardTitleInput.value
+  });
+  cardsList.prepend(NewCard);
+  closePopup(popupAddCard)
+})
 
 // Template
-function addNewCard({ name, link, alt }) {
+function createCard({ name, link, alt }) {
   const card = cardTemplate.cloneNode(true);
   const img = card.querySelector('.card__image');
   img.src = link;
@@ -121,21 +119,16 @@ function addNewCard({ name, link, alt }) {
 
   const eraseButton = card.querySelector(".card__erase");
   eraseButton.addEventListener('click', function () {
-    const eraseCard = eraseButton.closest(".card");
-    eraseCard.remove();
+    const cardToRemove = eraseButton.closest(".card");
+    cardToRemove.remove();
 });
 
   card.querySelector('.card__like-button').addEventListener('click', (evt) => {
     evt.target.classList.toggle('card__like-button_active')
   });
 
-  function popupImageOpen() {
-    popupImageMenu.classList.add('popup-menu_opened');
-  }
-
-
   card.querySelector('.card__image').addEventListener('click', () => {
-    popupImageOpen();
+    openPopup(popupImageMenu);
     popupImage.src = img.src;
     popupImage.alt = img.alt;
     popupImageText.textContent = name;
@@ -145,14 +138,14 @@ function addNewCard({ name, link, alt }) {
 }
 
 initialCards.forEach((intialCardContent) => {
-  cardsList.append(addNewCard(intialCardContent));
+  cardsList.append(createCard(intialCardContent));
 });
 
 function popupImageClose() {
   popupImageMenu.classList.remove('popup-menu_opened');
 }
 
-popupImageCloseBtn.addEventListener('click', () => {
-  popupImageClose();
-});
+popupImageCloseBtn.addEventListener('click', () =>
+  closePopup(popupImageMenu)
+);
 

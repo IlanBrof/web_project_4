@@ -68,9 +68,28 @@ function popupMenuOpen() {
   popup.classList.add('popup-menu_opened');
   menuInputName.value = profileName.textContent;
   menuInputTitle.value = profileTitleDescription.textContent;
+  document.addEventListener('keydown', pressEscapeBtn);
+  popup.addEventListener('click', mouseClick);
 }
+
+function pressEscapeBtn(evt) {
+  if (evt.keyCode === 27) {
+    popupCloseMenu();
+    popupAddCardClose();
+  }
+}
+
+function mouseClick(evt) {
+  if (evt.target.classList.contains('popup-menu_opened')) {
+    popupCloseMenu(evt.target);
+    popupAddCardClose(evt.target);
+  }
+}
+
 function popupCloseMenu() {
   popup.classList.remove('popup-menu_opened');
+  document.removeEventListener('keydown', pressEscapeBtn);
+  popup.removeEventListener('click', mouseClick);
 }
 
 // add card menu
@@ -78,9 +97,13 @@ function popupAddCardOpen() {
   popupAddCard.classList.add('popup-menu_opened');
   popupAddCardTitleInput.value = "";
   popupAddCardUrlInput.value = "";
+  document.addEventListener('keydown', pressEscapeBtn);
+  popupAddCard.addEventListener('click', mouseClick);
 }
 function popupAddCardClose() {
   popupAddCard.classList.remove('popup-menu_opened');
+  document.removeEventListener('keydown', pressEscapeBtn);
+  popupAddCard.removeEventListener('click', mouseClick);
 }
 
 
@@ -95,7 +118,6 @@ popupAddCard.addEventListener('submit', evt => {
   popupAddCardClose()
 
 })
-
 
 profileEditButton.addEventListener('click', popupMenuOpen);
 menuCloseButton.addEventListener('click', popupCloseMenu);

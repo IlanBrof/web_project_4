@@ -157,15 +157,8 @@ function addNewCard({ name, link, alt }) {
     evt.target.classList.toggle('card__like-button_active')
   });
 
-  function popupImageOpen() {
-    popupImageMenu.classList.add('popup-menu_opened');
-    document.addEventListener('keydown', pressEscapeBtn);
-    popupImageMenu.addEventListener('click', mouseClick);
-  }
-
-
   card.querySelector('.card__image').addEventListener('click', () => {
-    popupImageOpen();
+    popupMenuOpen(popupImageMenu);
     popupImage.src = img.src;
     popupImage.alt = img.alt;
     popupImageText.textContent = name;
@@ -178,15 +171,7 @@ initialCards.forEach((intialCardContent) => {
   cardsList.prepend(addNewCard(intialCardContent));
 });
 
-function popupImageClose() {
-  popupImageMenu.classList.remove('popup-menu_opened');
-  document.removeEventListener('keydown', pressEscapeBtn);
-  popupImageMenu.removeEventListener('click', mouseClick);
-}
-
 popupImageCloseBtn.addEventListener('click', () => {
-  popupImageClose();
-
-
+  popupMenuClose(popupImageMenu);
 });
 

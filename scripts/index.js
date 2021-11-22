@@ -1,36 +1,7 @@
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-    alt: "Yosemite"
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-    alt: "A Lake"
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-    alt: "Mountains"
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-    alt: "Latemar"
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-    alt: "Vanoise"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-    alt: "The Lago"
-  }
-];
-
+import initialCards from './initial-cards.js';
+//import Utils from './Utils.js';
+import Card from './Card.js';
+//import FormValidator from './FormValidator.js';
 
 // profile-name and title edit menu
 const popup = document.querySelector('.popup-menu');
@@ -53,6 +24,8 @@ const cardTemplate = document.querySelector('#card-template').content;
 const cardElement = cardTemplate.querySelector('.card');
 const cardsList = document.querySelector('.cards__list');
 const likeButton = cardTemplate.querySelector('.card__like-button');
+
+const cardImage = document.querySelector('.card__image');
 
 // image popup menu
 const popupImageMenu = document.querySelector('#popup-menu_image');
@@ -140,6 +113,7 @@ popupAddCard.addEventListener('submit', (evt) => {
 });
 
 // Template
+
 function addNewCard({ name, link, alt }) {
   const card = cardTemplate.cloneNode(true);
   const img = card.querySelector('.card__image');
@@ -148,6 +122,7 @@ function addNewCard({ name, link, alt }) {
   card.querySelector('.card__text').textContent = name;
 
   const eraseButton = card.querySelector(".card__erase");
+
   eraseButton.addEventListener('click', function () {
     const eraseCard = eraseButton.closest(".card");
     eraseCard.remove();
@@ -167,6 +142,7 @@ function addNewCard({ name, link, alt }) {
   return card;
 }
 
+
 initialCards.forEach((intialCardContent) => {
   cardsList.prepend(addNewCard(intialCardContent));
 });
@@ -175,3 +151,4 @@ popupImageCloseBtn.addEventListener('click', () => {
   popupMenuClose(popupImageMenu);
 });
 
+export { popupMenuOpen, popupImageText, cardImage, popupImage };

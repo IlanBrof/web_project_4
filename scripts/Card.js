@@ -1,40 +1,45 @@
-//import { popupMenuOpen, popupImageText, cardImage, popupImage } from './index.js';
-
+import { popupMenuOpen } from './utils.js';
+import { popupImageMenu, popupImage, popupImageText } from './index.js';
 export default class Card {
-  constructor(data, templateElement) {
-    this._name = data.name;
-    this._link = data.link;
-    this._templateElement = templateElement;
+  constructor(cardData, templateElementSelector) {
+    this._name = cardData.name;
+    this._link = cardData.link;
+    this._template = document.querySelector(templateElementSelector).content.querySelector('.card');
+  }
+  _addEventListeners() {
+    this._imageEraseButton();
+    this._cardLikeButton();
+    this._cardImagePopupButton();
   }
 
-  _setEventListeners() {
-    const eraseButton = this._templateElement.querySelector(".card__erase");
-    const likeButton = this._templateElement.querySelector('.card__like-button');
-
+  _imageEraseButton() {
+    const eraseButton = this._element.querySelector('.card__erase');
     eraseButton.addEventListener('click', function () {
-      this._templateElement.remove();
+      eraseButton.closest('.card').remove();
     });
+  }
 
-    likeButton.addEventListener('click', (evt) => {
+  _cardLikeButton() {
+    this._element.querySelector('.card__like-button').addEventListener('click', (evt) => {
       evt.target.classList.toggle('card__like-button_active')
     });
+  }
 
-    this._templateElement.querySelector('.card__image').addEventListener('click', () => {
+  _cardImagePopupButton() {
+    this._element.querySelector('.card__image').addEventListener('click', () => {
       popupMenuOpen(popupImageMenu);
       popupImage.src = this._link;
       popupImage.alt = this._name;
       popupImageText.textContent = this._name;
     });
   }
+    render() {
+      this._element = this._template.cloneNode(true);
+      this._element.querySelector('.card__image').src = this._link;
+      this._element.querySelector('.card__text').alt = this._name;
+      this._element.querySelector('.card__text').textContent = this._name;
+      this._addEventListeners();
 
-  render() {
-    this._templateElement = this._templateElement.querySelector('.card').cloneNode(true);
-    this._templateElement.querySelector('.card__text').textContent = this._name;
-    this._templateElement.querySelector('.card__image').src = this._link;
-    this._templateElement.querySelector('.card__image').alt = this._name;
-
-    this._setEventListeners();
-
-    return this._templateElement;
-  }
+      return this._element;
+    }
 }

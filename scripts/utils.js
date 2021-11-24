@@ -1,26 +1,26 @@
-function popupMenuOpen(popupMenu) { // This opens the popup menus
+function openPopup(popupMenu) { // This opens the popup menus
   popupMenu.classList.add('popup-menu_opened');
-  document.addEventListener('keydown', pressEscapeBtn);
-  popupMenu.addEventListener('click', mouseClick);
+  document.addEventListener('keydown', handleEscapeBtn);
+  popupMenu.addEventListener('click', handleMouseClick);
 }
 
-function pressEscapeBtn(evt) { // This handles what happens upon pressing the escape key
+function handleEscapeBtn(evt) { // This handles what happens upon pressing the escape key
   const escKeycode = 27;
   if (evt.keyCode === escKeycode) {
-    popupMenuClose(document.querySelector('.popup-menu_opened'));
+    closePopup(document.querySelector('.popup-menu_opened'));
   }
 }
 
-function mouseClick(evt) { // This handles what happens upon mouse click, outside of the zoomed image
+function handleMouseClick(evt) { // This handles what happens upon mouse click, outside of the zoomed image
   if (evt.target.classList.contains('popup-menu_opened')) {
-    popupMenuClose(evt.target);
+    closePopup(evt.target);
   }
 }
 
-function popupMenuClose(popupMenu) { // This opens the popup menus
+function closePopup(popupMenu) { // This opens the popup menus
   popupMenu.classList.remove('popup-menu_opened');
-  document.removeEventListener('keydown', pressEscapeBtn);
-  popupMenu.removeEventListener('click', mouseClick);
+  document.removeEventListener('keydown', handleEscapeBtn);
+  popupMenu.removeEventListener('click', handleMouseClick);
 }
 
-export { popupMenuOpen, pressEscapeBtn, mouseClick, popupMenuClose };
+export { openPopup, handleEscapeBtn, handleMouseClick, closePopup };

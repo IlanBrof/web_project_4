@@ -1,14 +1,14 @@
 import initialCards from './initial-cards.js';
-import { popupMenuOpen, popupMenuClose } from './utils.js';
+import { openPopup, closePopup } from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
 
 // profile-name and title edit menu
-const popup = document.querySelector('.popup-menu');
-const profileMenuEditForm = popup.querySelector('.popup-menu__edit-form');
-const menuCloseButton = popup.querySelector('.popup-menu__close-button');
-const menuInputName = popup.querySelector('.popup-menu__input_type_name');
-const menuInputTitle = popup.querySelector('.popup-menu__input_type_title');
+const profilePopup = document.querySelector('.popup-menu');
+const profileMenuEditForm = profilePopup.querySelector('.popup-menu__edit-form');
+const profileCloseButton = profilePopup.querySelector('.popup-menu__close-button');
+const menuInputName = profilePopup.querySelector('.popup-menu__input_type_name');
+const menuInputTitle = profilePopup.querySelector('.popup-menu__input_type_title');
 const profileName = document.querySelector('.profile-menu__full-name');
 const profileTitleDescription = document.querySelector('.profile-menu__title');
 const profileEditButton = document.querySelector('.profile-menu__edit-button');
@@ -19,7 +19,6 @@ const popupAddCardCloseButton = popupAddCard.querySelector('.popup-menu__close-b
 const popupAddCardTitleInput = popupAddCard.querySelector('.popup-menu__input_type_title');
 const popupAddCardUrlInput = popupAddCard.querySelector('.popup-menu__input_type_url');
 const addCardButton = document.querySelector('.profile-menu__add-button');
-const cardTemplate = document.querySelector('#card-template').content;
 const cardsList = document.querySelector('.cards__list');
 
 // image popup menu
@@ -37,11 +36,11 @@ profileMenuEditForm.addEventListener('submit', (evt) => { // Handles the event t
   evt.preventDefault();
   profileName.textContent = menuInputName.value;
   profileTitleDescription.textContent = menuInputTitle.value;
-  popupMenuClose(popup);
+  closePopup(profilePopup);
 });
 
-menuCloseButton.addEventListener('click', () => {
-  popupMenuClose(popup);
+profileCloseButton.addEventListener('click', () => {
+  closePopup(profilePopup);
 });
 
 // add card menu
@@ -51,26 +50,29 @@ function editAddCardContent() {
 };
 
 popupAddCardCloseButton.addEventListener('click', () => {
-  popupMenuClose(popupAddCard);
+  closePopup(popupAddCard);
 });
 
 popupAddCard.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const cardElement = { name: popupAddCardTitleInput.value, link: popupAddCardUrlInput.value };
-  const createNewCard = new Card(cardElement, templateElementSelector);
-  cardsList.prepend(createNewCard.render());
-  popupMenuClose(popupAddCard);
+  createCard(cardElement);
+  closePopup(popupAddCard);
 });
+
+function createCard(cardData) {
+  const card = new Card(cardData, templateElementSelector);
+  cardsList.prepend(card.render());
+}
 
 // Template
 const templateElementSelector = '#card-template';
 initialCards.forEach((cardData) => {
-  const card = new Card(cardData, templateElementSelector)
-  cardsList.prepend(card.render());
+  createCard(cardData);
 });
 
 popupImageCloseBtn.addEventListener('click', () => {
-  popupMenuClose(popupImageMenu);
+  closePopup(popupImageMenu);
 });
 
 // Validations
@@ -83,19 +85,19 @@ const formSettings = {
   errorClass: "popup-menu__error_visible"
 };
 
-const profileFormValidator = new FormValidator(formSettings, popup);
+const profileFormValidator = new FormValidator(formSettings, profilePopup);
 const cardFormValidator = new FormValidator(formSettings, popupAddCard);
 
 profileEditButton.addEventListener('click', () => {
   editProfileContent();
-  popupMenuOpen(popup);
-  profileFormValidator._checkInitialformValidity();
+  profileFormValidator.checkInitialformValidity();
+  openPopup(profilePopup);
 });
 
 addCardButton.addEventListener('click', () => {
   editAddCardContent();
-  popupMenuOpen(popupAddCard);
-  cardFormValidator._checkInitialformValidity();
+  cardFormValidator.checkInitialformValidity();
+  openPopup(popupAddCard);
 });
 
 profileFormValidator.enableValidation();

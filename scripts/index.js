@@ -36,7 +36,6 @@ profileMenuEditForm.addEventListener('submit', (evt) => { // Handles the event t
   evt.preventDefault();
   profileName.textContent = menuInputName.value;
   profileTitleDescription.textContent = menuInputTitle.value;
-  profileFormValidator.resetValidation();
   closePopup(profilePopup);
 });
 
@@ -58,7 +57,6 @@ popupAddCard.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const cardElement = { name: popupAddCardTitleInput.value, link: popupAddCardUrlInput.value };
   createCard(cardElement);
-  cardFormValidator.resetValidation();
   closePopup(popupAddCard);
 });
 
@@ -92,14 +90,15 @@ const cardFormValidator = new FormValidator(formSettings, popupAddCard);
 
 profileEditButton.addEventListener('click', () => {
   editProfileContent();
+  profileFormValidator.resetValidation();
   openPopup(profilePopup);
 });
 
 addCardButton.addEventListener('click', () => {
   editAddCardContent();
+  cardFormValidator.resetValidation();
   openPopup(popupAddCard);
 });
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
-

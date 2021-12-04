@@ -2,6 +2,15 @@ import initialCards from './initial-cards.js';
 import { openPopup, closePopup } from './utils.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+import '../pages/index.css';
+import avatarImagerSrc from '../images/avatar_image.png';
+import logoSrc from '../images/logo.svg';
+
+// logo and avatar images
+const avatarImage = document.getElementById('avatar_image');
+avatarImage.src = avatarImagerSrc;
+const logoIcon = document.getElementById('logo-icon');
+logoIcon.src = logoSrc;
 
 // profile-name and title edit menu
 const profilePopup = document.querySelector('.popup-menu');

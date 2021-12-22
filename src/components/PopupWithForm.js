@@ -20,7 +20,6 @@ export default class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
-    this._popup.querySelector('.popup-menu__close-button').addEventListener('click', () => { this.close() })
     this._popup.addEventListener('submit', this._formSubmit);
   }
 }

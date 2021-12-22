@@ -18,11 +18,11 @@ export default class Popup {
 
   close() {
     this._popup.classList.remove('popup-menu_opened');
-    document.addEventListener('keydown', this._handleEscClose);
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   _handleEscClose = (evt) => {
-    if (evt.keyCode === 27) {
+    if (evt.keyCode === "Escape") {
       this.close()
     }
   }

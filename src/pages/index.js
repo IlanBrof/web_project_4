@@ -56,8 +56,8 @@ profileEditButton.addEventListener('click', () => {
 const popupAddCard = new PopupWithForm('#popup-menu_type_add-card', submitAddCardForm);
 popupAddCard.setEventListeners();
 
-function submitAddCardForm() {
-  const cardElement = createCard({ name: popupAddCardTitleInput.value, link: popupAddCardUrlInput.value })
+function submitAddCardForm(inputInfo) {
+  const cardElement = createCard(inputInfo);
   cardRenderer.addItem(cardElement);
   popupAddCard.close();
 }

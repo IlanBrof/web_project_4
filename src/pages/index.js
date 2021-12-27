@@ -13,17 +13,17 @@ import {
   addCardPopupForm,
   templateElementSelector,
   formSettings
-} from './utils/constants.js';
-import './pages/index.css';
-import initialCards from './utils/initial-cards.js';
-import Card from './components/Card.js';
-import avatarImagerSrc from './images/avatar_image.png';
-import logoSrc from './images/logo.svg';
-import PopupWithImage from './components/PopupWithImage';
-import PopupWithForm from './components/PopupWithForm.js';
-import Section from './components/Section.js';
-import UserInfo from './components/UserInfo.js';
-import FormValidator from './components/FormValidator.js';
+} from '../utils/constants.js';
+import './index.css';
+import initialCards from '../utils/initial-cards.js';
+import Card from '../components/Card.js';
+import avatarImagerSrc from '../images/avatar_image.png';
+import logoSrc from '../images/logo.svg';
+import PopupWithImage from '../components/PopupWithImage';
+import PopupWithForm from '../components/PopupWithForm.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
 
 // Logo and Avatar Image
 avatarImage.src = avatarImagerSrc;
@@ -33,16 +33,16 @@ logoIcon.src = logoSrc;
 const profilePopup = new PopupWithForm('.popup-menu', saveUserInfo);
 profilePopup.setEventListeners();
 
+const userInfo = new UserInfo({ profileName, profileDescription });
+
 function currentUserInfo() {
   const userInformation = userInfo.getUserInfo();
   menuInputName.value = userInformation.name;
   menuInputTitle.value = userInformation.description;
 }
 
-const userInfo = new UserInfo({ profileName, profileDescription });
-function saveUserInfo(evt) {
-  evt.preventDefault();
-  userInfo.setUserInfo({ name: menuInputName.value, description: menuInputTitle.value });
+function saveUserInfo(inputInfo) {
+  userInfo.setUserInfo({ menuInputName: inputInfo.userName, menuInputTitle: inputInfo.title });
   profilePopup.close();
 }
 
@@ -56,8 +56,7 @@ profileEditButton.addEventListener('click', () => {
 const popupAddCard = new PopupWithForm('#popup-menu_type_add-card', submitAddCardForm);
 popupAddCard.setEventListeners();
 
-function submitAddCardForm(evt) {
-  evt.preventDefault();
+function submitAddCardForm() {
   const cardElement = createCard({ name: popupAddCardTitleInput.value, link: popupAddCardUrlInput.value })
   cardRenderer.addItem(cardElement);
   popupAddCard.close();

@@ -22,7 +22,7 @@ export default class Popup {
   }
 
   _handleEscClose = (evt) => {
-    if (evt.keyCode === "Escape") {
+    if (evt.key === "Escape") {
       this.close()
     }
   }

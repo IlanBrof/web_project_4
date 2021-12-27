@@ -9,8 +9,8 @@ export default class UserInfo {
     return infoAboutUser;
   }
 
-  setUserInfo( {name, description} ) {
-    this._profileName.textContent = name;
-    this._profileDescription.textContent = description;
+  setUserInfo({ menuInputName, menuInputTitle }) {
+    this._profileName.textContent = menuInputName;
+    this._profileDescription.textContent = menuInputTitle;
   }
 }

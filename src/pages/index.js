@@ -1,13 +1,14 @@
+import 'regenerator-runtime/runtime';
 import {
   avatarImage,
   logoIcon,
   menuInputName,
   menuInputTitle,
+  popupAddCardTitleInput,
+  popupAddCardUrlInput,
   profileName,
   profileDescription,
   profileEditButton,
-  popupAddCardTitleInput,
-  popupAddCardUrlInput,
   addCardButton,
   profilePopupForm,
   addCardPopupForm,
@@ -15,7 +16,7 @@ import {
   formSettings
 } from '../utils/constants.js';
 import './index.css';
-import initialCards from '../utils/initial-cards.js';
+import Api from '../components/Api.js';
 import Card from '../components/Card.js';
 import avatarImagerSrc from '../images/avatar_image.png';
 import logoSrc from '../images/logo.svg';
@@ -24,6 +25,12 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  token: "10d5550b-e17c-437f-9d04-3dde6b160e5d"
+});
+
 
 // Logo and Avatar Image
 avatarImage.src = avatarImagerSrc;
@@ -56,8 +63,9 @@ profileEditButton.addEventListener('click', () => {
 const popupAddCard = new PopupWithForm('#popup-menu_type_add-card', submitAddCardForm);
 popupAddCard.setEventListeners();
 
-function submitAddCardForm(inputInfo) {
-  const cardElement = createCard(inputInfo);
+async function submitAddCardForm() {
+  const data = await api.uploadUserCard(popupAddCardTitleInput.value, popupAddCardUrlInput.value)
+  const cardElement = createCard(data);
   cardRenderer.addItem(cardElement);
   popupAddCard.close();
 }
@@ -77,12 +85,24 @@ function createCard(cardData) {
 }
 
 const cardRenderer = new Section({
-  items: initialCards, renderer: (element) => {
+  renderer: (element) => {
     const newCard = createCard(element);
     cardRenderer.addItem(newCard);
   }
 }, '.cards__list');
-cardRenderer.renderer();
+
+api
+  .getInitialCards()
+  .then((cards) => {
+    cardRenderer.renderer(cards);
+  });
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo({ menuInputName: userData.name, menuInputTitle: userData.about });
+  });
+
 
 // Validations
 const profileFormValidator = new FormValidator(formSettings, profilePopupForm);
@@ -90,3 +110,4 @@ const cardFormValidator = new FormValidator(formSettings, addCardPopupForm);
 
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+

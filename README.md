@@ -1,9 +1,9 @@
-# Project 8: Around the US
+# Project 9: Around the US
 
 **Intro**
 
 This is a project about traveling across the US. We've made it so all the elements are displayed correctly on popular screen sizes.
-This is my Fourth Javascript enabled project.
+This is my Fifth Javascript enabled project, and the first to be connected to an external Server via API.
 
 **Technologies used to create the Project**
 

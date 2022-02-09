@@ -1,11 +1,17 @@
 .profile-menu__avatar {
-  margin: 40px 30px 0 0;
+  margin: 40px 0 0 0;
   padding: 0 0;
   height: 120px;
   width: 120px;
   border-width: 0;
   border-style: solid;
   border-radius: 100%;
+}
+
+.profile-menu__avatar:hover {
+  opacity: 0.2;
+  transition: ease-in-out 350ms;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 928px) {

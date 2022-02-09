@@ -6,6 +6,11 @@
   padding: 0 0 0 0;
   max-width: 330px;
 }
+
+.popup-menu__title_delConfirm {
+  margin: 34px 0 10px 0;
+}
+
 @media screen and (max-width: 420px) {
   .popup-menu__title {
     margin: 25px 0 76px 0;

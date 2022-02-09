@@ -15,13 +15,16 @@
   </header>
   <main class="main">
     <section class="profile-menu">
-      <img class="profile-menu__avatar" id="avatar_image" alt="jacques cousteau">
+      <div class="profile-menu__profile-pic">
+        <img class="profile-menu__avatar" id="avatar_image" alt="">
+        <button class="profile-menu__avatar-button" type="button"></button>
+      </div>
       <div class="profile-menu__info">
         <div class="profile-menu__alignment">
-          <h1 class="profile-menu__full-name">Jacques Cousteau</h1>
+          <h1 class="profile-menu__full-name"></h1>
           <button class="profile-menu__edit-button" type="button" aria-label="edit-button"></button>
         </div>
-        <p class="profile-menu__title">Explorer</p>
+        <p class="profile-menu__title"></p>
       </div>
       <button class="profile-menu__add-button" type="button" aria-label="add-button"></button>
     </section>
@@ -47,7 +50,7 @@
         <input id="input_type_title" type="text" placeholder="Title" name="title"
           class="popup-menu__input popup-menu__input_type_title" minlength="2" maxlength="200" required>
         <span id="input_type_title-error" class="popup-menu__error"></span>
-        <button class="popup-menu__save-button" type="submit">Save</button>
+        <button class="popup-menu__save-button" id="edit-profile_save-button" type="submit">Save</button>
       </form>
     </div>
   </div>
@@ -63,7 +66,7 @@
         <input id="input_type_card_url" type="url" placeholder="Image link" name="link"
           class="popup-menu__input popup-menu__input_type_url" required>
         <span id="input_type_card_url-error" class="popup-menu__error"></span>
-        <button class="popup-menu__save-button" type="submit">Create</button>
+        <button class="popup-menu__save-button" id="add-card_save-button" type="submit">Create</button>
       </form>
     </div>
   </div>
@@ -77,6 +80,25 @@
       </div>
     </div>
   </div>
+  <div class="popup-menu" id="popup-menu_del-confirm">
+    <form class="popup-menu__del-confirm_container"><button class="popup-menu__close-button" type="button"
+        aria-label="close-button"></button>
+      <h3 class="popup-menu__title popup-menu__title_delConfirm">Are you sure?</h3>
+      <button class="popup-menu__save-button" id="delete-confirm_button" type="submit">Yes</button>
+    </form>
+  </div>
+  <div class="popup-menu" id="popup-menu_type_change-profilePic">
+    <div class="popup-menu__edit-form">
+      <button class="popup-menu__close-button" type="button" aria-label="close-button"></button>
+      <h3 class="popup-menu__title">Change Profile Picture</h3>
+      <form class="popup-menu__submit-form" name="form-wrapper" id="change-pic-form">
+        <input id="input_type_card_pic_url" type="url" placeholder="Profile Image link" name="link"
+          class="popup-menu__input popup-menu__input_type_url" required>
+        <span id="input_type_card_pic_url-error" class="popup-menu__error"></span>
+        <button class="popup-menu__save-button" id="change-avatar_button" type="submit">Save</button>
+      </form>
+    </div>
+  </div>
 
   <template id="card-template">
     <li class="card">
@@ -84,7 +106,11 @@
       <img class="card__image" src="#" alt="">
       <div class="card__photo-description">
         <h2 class="card__text"></h2>
-        <button class="card__like-button" type="button" aria-label="like-button"></button>
+        <div class="card__heart-container">
+          <button class="card__like-button" type="button" aria-label="like-button"></button>
+          <span class="card__like-count"></span>
+        </div>
+
       </div>
     </li>
   </template>

@@ -4,10 +4,7 @@ export default class Api {
     this._token = options.token;
   }
 
-  async getInitialCards() {
-    const response = await fetch(`${this._url}/cards`, {
-      headers: { authorization: this._token }
-    });
+  _checkResponse(response) {
     if (response.ok) {
       return response.json();
     } else {
@@ -15,15 +12,18 @@ export default class Api {
     }
   }
 
+  async getInitialCards() {
+    const response = await fetch(`${this._url}/cards`, {
+      headers: { authorization: this._token }
+    });
+    return this._checkResponse(response)
+  }
+
   async getUserInfo() {
     const response = await fetch(`${this._url}/users/me`, {
       headers: { authorization: this._token }
     });
-    if (response) {
-      return response.json();
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
   async editUserInfo(name, about) {
@@ -35,11 +35,7 @@ export default class Api {
         about: about
       })
     });
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
   async uploadUserCard(name, link) {
@@ -47,13 +43,10 @@ export default class Api {
       method: 'POST',
       headers: { authorization: this._token, 'Content-type': 'application/json' },
       body: JSON.stringify({ name: name, link: link })
-    });
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
+    })
+    return this._checkResponse(response)
     }
-  }
+
 
   async addCard(name, link) {
     const response = await fetch(`${this._url}/cards`, {
@@ -61,11 +54,7 @@ export default class Api {
       headers: { authorization: this._token, 'Content-type': 'application/json' },
       body: { name: name, link: link }
     })
-    if (response.ok) {
-      return { name, link };
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
   async deleteCard(cardId) {
@@ -73,11 +62,7 @@ export default class Api {
       method: 'DELETE',
       headers: { authorization: this._token },
     })
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
   async like(cardId) {
@@ -85,11 +70,7 @@ export default class Api {
       method: 'PUT',
       headers: { authorization: this._token, 'Content-type': 'application/json' },
     })
-    if (response) {
-      return response.json();
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
   async dislike(cardId) {
@@ -97,11 +78,7 @@ export default class Api {
       method: 'DELETE',
       headers: { authorization: this._token, 'Content-type': 'application/json' },
     })
-    if (response) {
-      return response.json();
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 
   async setUserAvatar(link) {
@@ -110,10 +87,6 @@ export default class Api {
       headers: { authorization: this._token, 'Content-type': 'application/json' },
       body: JSON.stringify({ avatar: link })
     });
-    if (response.ok) {
-      return response.json();
-    } else {
-      console.log('Something went wrong', response.status, response.statusText);
-    }
+    return this._checkResponse(response)
   }
 }

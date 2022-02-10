@@ -26,10 +26,9 @@ export default class Card {
         try {
           const likes = await this._addLike(this._cardId);
           if (likes) {
-            this._getLikeCount(likes);
             evt.target.classList.add('card__like-button_active');
-            this._element.querySelector('.card__like-count').textContent = likes.length; //this._likeCount doesn't work with textContent
-            this._element.querySelector('.card__like-count').style.display = 'block';
+            this._likeCount.textContent = likes.length;
+            this._likeCount.style.display = 'block';
           }
         }
         catch (err) {
@@ -40,10 +39,11 @@ export default class Card {
         try {
           const likes = await this._removeLike(this._cardId);
           if (likes) {
-            this._getLikeCount(likes);
             evt.target.classList.remove('card__like-button_active');
-            this._element.querySelector('.card__like-count').textContent = likes.length; //this._likeCount doesn't work with textContent
-            this._element.querySelector('.card__like-count').style.display = 'none';
+            this._likeCount.textContent = likes.length;
+            if (likes.length === 0) {
+              this._likeCount.style.display = 'none';
+            }
           }
         }
         catch (err) {
@@ -56,10 +56,6 @@ export default class Card {
     this._trashBtn.addEventListener('click', () => {
       this._openDeleteConfirmPopup(this._element, this._cardId);
     });
-  }
-
-  _getLikeCount(likes) {
-    this._likeCount = likes.length;
   }
 
   _getUserLikes() {
@@ -84,7 +80,8 @@ export default class Card {
     if (this._likes.length > 0) {
       this._likeCount.textContent = this._likes.length;
       this._likeCount.style.display = 'block'
-    } else {
+    }
+    else {
       this._likeCount.style.display = "none";
     }
 

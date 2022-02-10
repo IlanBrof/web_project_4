@@ -1,25 +1,10 @@
 import 'regenerator-runtime/runtime';
 import {
-  avatarImage,
-  logoIcon,
-  menuInputName,
-  menuInputTitle,
-  popupAddCardTitleInput,
-  popupAddCardUrlInput,
-  profileName,
-  profileDescription,
-  profileEditButton,
-  addCardButton,
-  profilePopupForm,
-  addCardPopupForm,
-  templateElementSelector,
-  formSettings,
-  pofilePicUpdateButton,
-  popupProfilePicInput,
-  saveBtnForAddCard,
-  saveBtnForEditProfile,
-  saveBtnForEditProfilePic,
-  cardDeleteConfimBtn
+  avatarImage,logoIcon, menuInputName, menuInputTitle, cardDeleteConfimBtn,
+  popupAddCardTitleInput, popupAddCardUrlInput, profileName, profileDescription,
+  profileEditButton, addCardButton, profilePopupForm, addCardPopupForm,
+  changeAvatarForm, templateElementSelector, formSettings, pofilePicUpdateButton,
+  popupProfilePicInput, saveBtnForAddCard, saveBtnForEditProfile,saveBtnForEditProfilePic,
 } from '../utils/constants.js';
 import './index.css';
 import Api from '../components/Api.js';
@@ -37,18 +22,20 @@ const api = new Api({
   token: "10d5550b-e17c-437f-9d04-3dde6b160e5d"
 });
 
-api
-  .getInitialCards()
-  .then((cards) => {
-    console.log(cards);
-    cardRenderer.renderer(cards);
-  });
-
-api
-  .getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo({ name: userData.name, description: userData.about, avatar: userData.avatar, id: userData._id });
-  });
+async function loadThePage() {
+  try {
+      const [cards, userData] = await Promise.all([api.getInitialCards(), api.getUserInfo()])
+      if ([cards, userData]) {
+          userInfo.setUserInfo({ name: userData.name, description: userData.about, avatar: userData.avatar, id: userData._id })
+          cardRenderer.renderer(cards);
+      }
+  }
+  catch (err) {
+    alert(err)
+    console.log(err);
+  }
+}
+loadThePage();
 ///////////////////////////////End of Api Calls/////////////////////////////////////////
 
 // Logo and Avatar Image
@@ -96,7 +83,7 @@ async function saveUserInfo() {
     alert(err);
   }
   finally {
-    saveBtnForEditProfile.textContent = 'Saving';
+    saveBtnForEditProfile.textContent = 'Save';
   }
 }
 
@@ -120,17 +107,25 @@ async function submitAddCardForm() {
 }
 
 async function addLike(cardId) {
+  try{
     const response = await api.like(cardId);
     if (response) {
       console.log('Like was clicked', response.likes);
-      return response;
+      return response.likes;
     }
+  } catch (err) {
+    alert(err);
+  }
 }
 async function removeLike(cardId) {
+  try {
   const response = await api.dislike(cardId);
   if (response) {
     console.log('Dislike was clicked', response.likes);
-    return response;
+    return response.likes;
+  }
+  } catch (err) {
+    alert(err);
   }
 }
 
@@ -155,6 +150,7 @@ function openDeleteConfirmPopup(card, cardId) {
 }
 
 pofilePicUpdateButton.addEventListener('click', () => {
+  avatarFormValidator.resetValidation();
   popupChangeAvatar.open();
 });
 
@@ -164,7 +160,6 @@ async function changeAvatar() {
   const response = await api.setUserAvatar(popupProfilePicInput.value);  // This is the URL of the new avatar
   if (response) {
     userInfo.setUserInfo({ name: response.name, description: response.about, avatar: response.avatar, id: response._id });
-    avatarImage.src = userInfo._avatarImage;
     popupChangeAvatar.close();
   }
   } catch (err) {
@@ -191,5 +186,7 @@ const cardRenderer = new Section({
 // Validations
 const profileFormValidator = new FormValidator(formSettings, profilePopupForm);
 const cardFormValidator = new FormValidator(formSettings, addCardPopupForm);
+const avatarFormValidator = new FormValidator(formSettings, changeAvatarForm);
 profileFormValidator.enableValidation();
 cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation()

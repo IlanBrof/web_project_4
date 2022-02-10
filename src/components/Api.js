@@ -2,6 +2,7 @@ export default class Api {
   constructor(options) {
     this._url = options.baseUrl;
     this._token = options.token;
+    this._headers = { authorization: this._token, 'Content-type': 'application/json' };
   }
 
   _checkResponse(response) {
@@ -14,14 +15,14 @@ export default class Api {
 
   async getInitialCards() {
     const response = await fetch(`${this._url}/cards`, {
-      headers: { authorization: this._token }
+      headers: this._headers
     });
     return this._checkResponse(response)
   }
 
   async getUserInfo() {
     const response = await fetch(`${this._url}/users/me`, {
-      headers: { authorization: this._token }
+      headers: this._headers
     });
     return this._checkResponse(response)
   }
@@ -29,7 +30,7 @@ export default class Api {
   async editUserInfo(name, about) {
     const response = await fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: { authorization: this._token, 'Content-type': 'application/json' },
+      headers: this._headers,
       body: JSON.stringify({
         name: name,
         about: about
@@ -41,7 +42,7 @@ export default class Api {
   async uploadUserCard(name, link) {
     const response = await fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: { authorization: this._token, 'Content-type': 'application/json' },
+      headers: this._headers,
       body: JSON.stringify({ name: name, link: link })
     })
     return this._checkResponse(response)
@@ -51,7 +52,7 @@ export default class Api {
   async addCard(name, link) {
     const response = await fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: { authorization: this._token, 'Content-type': 'application/json' },
+      headers: this._headers,
       body: { name: name, link: link }
     })
     return this._checkResponse(response)
@@ -60,7 +61,7 @@ export default class Api {
   async deleteCard(cardId) {
     const response = await fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: { authorization: this._token },
+      headers: this._headers,
     })
     return this._checkResponse(response)
   }
@@ -68,7 +69,7 @@ export default class Api {
   async like(cardId) {
     const response = await fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'PUT',
-      headers: { authorization: this._token, 'Content-type': 'application/json' },
+      headers: this._headers,
     })
     return this._checkResponse(response)
   }
@@ -76,7 +77,7 @@ export default class Api {
   async dislike(cardId) {
     const response = await fetch(`${this._url}/cards/likes/${cardId}`, {
       method: 'DELETE',
-      headers: { authorization: this._token, 'Content-type': 'application/json' },
+      headers: this._headers,
     })
     return this._checkResponse(response)
   }
@@ -84,7 +85,7 @@ export default class Api {
   async setUserAvatar(link) {
     const response = await fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: { authorization: this._token, 'Content-type': 'application/json' },
+      headers: this._headers,
       body: JSON.stringify({ avatar: link })
     });
     return this._checkResponse(response)

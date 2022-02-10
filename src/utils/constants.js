@@ -10,6 +10,7 @@ export const popupAddCardUrlInput = document.querySelector('.popup-menu__input_t
 export const addCardButton = document.querySelector('.profile-menu__add-button');
 export const profilePopupForm = document.querySelector('#profile-form');
 export const addCardPopupForm = document.querySelector('#add-card-form');
+export const changeAvatarForm = document.querySelector('#change-pic-form');
 export const pofilePicUpdateButton = document.querySelector('.profile-menu__avatar-button');
 export const popupProfilePicInput = document.querySelector('#input_type_card_pic_url');
 export const saveBtnForAddCard = document.querySelector('#add-card_save-button');

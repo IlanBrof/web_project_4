@@ -25,7 +25,7 @@ const api = new Api({
 async function loadThePage() {
   try {
       const [cards, userData] = await Promise.all([api.getInitialCards(), api.getUserInfo()])
-      if ([cards, userData]) {
+      if ( cards, userData ) {
           userInfo.setUserInfo({ name: userData.name, description: userData.about, avatar: userData.avatar, id: userData._id })
           cardRenderer.renderer(cards);
       }

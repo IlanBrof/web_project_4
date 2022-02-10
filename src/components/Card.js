@@ -14,7 +14,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._likeCount = document.querySelector('.card__like-count');
     this._likeBtn = this._element.querySelector('.card__like-button');
     this._trashBtn = this._element.querySelector('.card__erase');
 
@@ -29,8 +28,8 @@ export default class Card {
           if (likes) {
             this._getLikeCount(likes);
             evt.target.classList.add('card__like-button_active');
-            this._element.querySelector('.card__like-count').textContent = this._likes.length;
-            this._element.querySelector('.card__like-count').style.display = "block";
+            this._element.querySelector('.card__like-count').textContent = likes.length; //this._likeCount doesn't work with textContent
+            this._element.querySelector('.card__like-count').style.display = 'block';
           }
         }
         catch (err) {
@@ -43,9 +42,8 @@ export default class Card {
           if (likes) {
             this._getLikeCount(likes);
             evt.target.classList.remove('card__like-button_active');
-            this._element.querySelector('.card__like-count').textContent = this._likes.length;
-            this._element.querySelector('.card__like-count').style.display = "block";
-
+            this._element.querySelector('.card__like-count').textContent = likes.length; //this._likeCount doesn't work with textContent
+            this._element.querySelector('.card__like-count').style.display = 'none';
           }
         }
         catch (err) {
@@ -78,15 +76,16 @@ export default class Card {
 
   renderCard() {
     this._element = this._template.cloneNode(true);
+    this._likeCount = this._element.querySelector('.card__like-count');
     this._cardImage = this._element.querySelector('.card__image');
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector('.card__text').textContent = this._name;
     if (this._likes.length > 0) {
-      this._element.querySelector('.card__like-count').textContent = this._likes.length;
-      this._element.querySelector('.card__like-count').style.display = 'block'
+      this._likeCount.textContent = this._likes.length;
+      this._likeCount.style.display = 'block'
     } else {
-      this._element.querySelector('.card__like-count').style.display = "none";
+      this._likeCount.style.display = "none";
     }
 
      if (this._ownerId !== this._myId) {

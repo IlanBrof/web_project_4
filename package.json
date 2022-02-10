@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/IlanBrof/web_project_4/issues"
   },
-  "homepage": "https://ilanbrof.github.io/web_project_4/",
+  "homepage": "https://ilanbrof.github.io/web_project_4",
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
